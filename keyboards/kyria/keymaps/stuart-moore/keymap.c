@@ -55,20 +55,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Lower Layer: Numpad, Media
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |      |      | VolUp|      |      |                              | / ?  | 7 &  | 8 *  | 9 (  | - _  |        |
+ * |        |      |      | VolUp|      |      |                              | = +  | 7 &  | 8 *  | 9 (  |  . > |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |      | Prev | Play | Next |      |                              | *    | 4 $  | 5 %  | 6 ^  | , <  | +      |
+ * |        |      | Prev | Play | Next |      |                              | *    | 4 $  | 5 %  | 6 ^  | 0 )  | +      |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
- * |        |      |      | VolDn| Mute |      |      |      |  |      |      | 0 )  | 1 !  | 2 @  | 3 #  | = +  |        |
+ * |        |      |      | VolDn| Mute |      |      |      |  |      |      | , <  | 1 !  | 2 @  | 3 #  | / ?  | - _    |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        |      |      | Lower|      |      |  |      | Nav  | Raise|      |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [LOWER] = LAYOUT(
-      _______, _______, _______, KC_VOLU, _______, _______,                                     KC_SLSH, KC_7,    KC_8,    KC_9, KC_MINS, _______,
-      _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, _______,                                     KC_ASTR, KC_4,    KC_5,    KC_6, KC_COMM, KC_PLUS,
-      _______, _______, _______, KC_VOLD, KC_MUTE, _______, _______, _______, _______, _______, KC_0,    KC_1,    KC_2,    KC_3, KC_EQL,  _______,
+      _______, _______, _______, KC_VOLU, _______, _______,                                     KC_EQL , KC_7,    KC_8,    KC_9, KC_DOT , _______,
+      _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, _______,                                     KC_ASTR, KC_4,    KC_5,    KC_6, KC_0   , KC_PLUS,
+      _______, _______, _______, KC_VOLD, KC_MUTE, _______, _______, _______, _______, _______, KC_COMM, KC_1,    KC_2,    KC_3, KC_SLSH, KC_MINS,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 /*
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |        |  !   |  #   |  _   |  +   |  [   |      |      |  |      |      |   ]  | 1 !  | 2 @  | 3 #  | / ? |   `    |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+---------------------'
  *                        |      |      |      |      |      |  |      |      |      |      |      |
- *                        |      |      | Lower|      |      |  |      | Nav  | Raise|      |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [RAISE] = LAYOUT(
@@ -95,19 +95,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Navigation Layer
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |        |      | MB1  |  MUp |  MB2 |      |                              | PgUp | Home | Up   | End  |  W \ | ScrlLk |
+ * |        |      | MB1  |  MUp |  MB2 |      |                              | PgUp | Home | Up   | End  |  W \ |        |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
- * |        |      |MLeft | MDown|MRight|      |                              | PgDn | Left | Down | Right|      | CapsLk |
+ * |        |      |MLeft | MDown|MRight|      |                              | PgDn | Left | Down | Right|ScrlLk| CapsLk |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'                     
  *                        | MBTN1|      |      |      |      |  |      |      |      |      |MBTN2 |
- *                        |      |      | Lower|      |      |  |      | Nav  | Raise|      |      |
+ *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [NAV] = LAYOUT(
-      _______, _______, KC_BTN1, KC_MS_U, KC_BTN2, _______,                                     KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_NONUS_BSLASH, KC_SLCK,
-      _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______,                                     KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, _______, KC_CAPS,
+      _______, _______, KC_BTN1, KC_MS_U, KC_BTN2, _______,                                     KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_NONUS_BSLASH, _______,
+      _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______,                                     KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_SLCK, KC_CAPS,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
                                  KC_BTN1, _______, _______, _______, _______, _______, _______, _______, _______, KC_BTN2
     ),
@@ -181,8 +181,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         rgblight_mode_noeeprom(1); 
         break;
     }
-    // return update_tri_layer_state(state, LOWER, RAISE, ADJUST);
-    return state;
+    return update_tri_layer_state(state, LOWER, RAISE, ADJUST);
+    //return state;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -352,9 +352,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             case COLEMAKDHM:
                 // Scrolling with PageUp and PgDn.
                 if (clockwise) {
-                    tap_code(KC_MS_WH_UP);
+                    tap_code16(KC_TAB);
                 } else {
-                    tap_code(KC_MS_WH_DOWN);
+                    tap_code16(S(KC_TAB));
                 }
                 break;
             case NAV:
