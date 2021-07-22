@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,  KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                         KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,    KC_BSPC,
       KC_TAB,  KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O,       KC_ENT,
       KC_LCTL, KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,   KC_CCCV,   XXXXXXX, KC_DEL, KC_LEAD,  KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,    KC_QUOT,
-                            XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, TT(RAISE), MT(MOD_LSFT,KC_SPACE), TT(NAV), TT(LOWER), KC_TAB, XXXXXXX
+                            XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, TT(RAISE), MT(MOD_LSFT,KC_SPACE), TT(NAV), TT(LOWER), KC_TAB, KC_MPLY
     ),
 /*
 *              KC_LGUI, KC_LALT, MO(LOWER),  MT(MOD_LALT, KC_ENT), MT(MOD_LSFT, KC_SPC), LT(NAV, KC_SPC), MO(RAISE), KC_TAB, KC_RALT
@@ -81,14 +81,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------------+--------|
  * |        |  !   |  #   |  _   |  +   |  [   |      |      |  |      |      |   ]  | 1 !  | 2 @  | 3 #  | / ? |   `    |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+---------------------'
- *                        |      |      |      |      |      |  |      |      |      |      |      |
+ *                        |      |      |      |      |      |  |      | Adj  |      |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [RAISE] = LAYOUT(
       KC_TILD,   KC_PERC, KC_CIRC, KC_AMPR,   KC_ASTR,  KC_LCBR,                                       KC_RCBR, KC_7, KC_8, KC_9, KC_DOT,_______,
       KC_BSLASH, KC_AT, KC_DLR,  KC_MINUS,  KC_EQUAL, KC_LPRN,                                         KC_RPRN, KC_4, KC_5, KC_6, KC_0, KC_PIPE,
-      _______,   KC_EXLM, RALT(KC_3),KC_UNDS,  KC_PLUS,KC_LBRACKET, _______, _______, _______, _______,KC_RBRACKET,KC_1,KC_2,KC_3,KC_SLASH,KC_GRAVE,
+      _______,   KC_EXLM, KC_NONUS_HASH, KC_UNDS,  KC_PLUS,KC_LBRACKET, _______, _______, _______, _______,KC_RBRACKET,KC_1,KC_2,KC_3,KC_SLASH,KC_GRAVE,
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 /*
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'                     
- *                        | MBTN1|      |      |      |      |  |      |      |      |      |MBTN2 |
+ *                        | MBTN1|      |      |      | Adj  |  |      |      |      |      |MBTN2 |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -158,6 +158,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
+
+    state = update_tri_layer_state(state, LOWER, RAISE, ADJUST);
     switch (get_highest_layer(state)) {
     case RAISE:
         // rgblight_setrgb (0x00,  0x00, 0xFF);
@@ -181,8 +183,8 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         rgblight_mode_noeeprom(1); 
         break;
     }
-    return update_tri_layer_state(state, LOWER, RAISE, ADJUST);
-    //return state;
+
+    return state;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -326,7 +328,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 }
                 break;
             case NAV:
-                // Mouse cursor up and down
+            // Mouse cursor up and down     
                 if (clockwise) {
                     tap_code(KC_MS_U);
                 } else {
@@ -350,11 +352,17 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     } else if (index == 1) {
         switch (biton32(layer_state)) {
             case COLEMAKDHM:
-                // Scrolling with PageUp and PgDn.
+                // // Scrolling with PageUp and PgDn.
+                // if (clockwise) {
+                //     tap_code16(KC_TAB);
+                // } else {
+                //     tap_code16(S(KC_TAB));
+                // }
+                // Volume control.
                 if (clockwise) {
-                    tap_code16(KC_TAB);
+                    tap_code(KC_VOLU);
                 } else {
-                    tap_code16(S(KC_TAB));
+                    tap_code(KC_VOLD);
                 }
                 break;
             case NAV:
