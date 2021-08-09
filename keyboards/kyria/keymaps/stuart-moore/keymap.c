@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LCTL   |   Z  |   X  |   C  |   D  |   V  | CCCV |      |  | Del  |Leader|   K  |   H  | ,  < | . >  | /  ? |  ' "   |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
- *                        | ENC  | LCTL | LAlt | LGUI | Raise|  | Space|      |Lower | Tab  | ENC  |
+ *                        | ENC  | LCTL | LAlt | LGUI | Raise|  | Space|      |Lower | AltG | ENC  |
  *                        |      |      |      |      |      |  | Shift| Nav  |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,  KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                         KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,    KC_BSPC,
       KC_TAB,  KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O,       KC_ENT,
       KC_LCTL, KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,   KC_CCCV,   XXXXXXX, KC_DEL, KC_LEAD,  KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,    KC_QUOT,
-                            XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, TT(RAISE), MT(MOD_LSFT,KC_SPACE), TT(NAV), TT(LOWER), KC_TAB, KC_MPLY
+                            XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, TT(RAISE), MT(MOD_LSFT,KC_SPACE), TT(NAV), TT(LOWER), KC_ALGR, KC_MPLY
     ),
 /*
 *              KC_LGUI, KC_LALT, MO(LOWER),  MT(MOD_LALT, KC_ENT), MT(MOD_LSFT, KC_SPC), LT(NAV, KC_SPC), MO(RAISE), KC_TAB, KC_RALT
@@ -237,8 +237,11 @@ void matrix_scan_user(void) {
         SEQ_TWO_KEYS(KC_E, KC_W) { // work email
             SEND_STRING("stuart.moore@ntu.ac.uk");
         }
-        SEQ_TWO_KEYS(KC_Y, KC_S) { // sign off
+        SEQ_TWO_KEYS(KC_E, KC_S) { // sign off
             SEND_STRING("\tCheers\nStuart");
+        }
+        SEQ_ONE_KEY(KC_C) { // Alfred keyboard Manages
+            SEND_STRING(SS_LGUI(SS_LSFT("C")));
         }
     }
 
