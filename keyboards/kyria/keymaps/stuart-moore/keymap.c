@@ -30,7 +30,7 @@ enum custom_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/* 
+/*
  * Base Layer: COLEMAKDHM
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
@@ -48,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,  KC_Q,   KC_W,   KC_F,   KC_P,   KC_B,                                         KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN,    KC_BSPC,
       KC_TAB,  KC_A,   KC_R,   KC_S,   KC_T,   KC_G,                                         KC_M,    KC_N,    KC_E,    KC_I,    KC_O,       KC_ENT,
       KC_LCTL, KC_Z,   KC_X,   KC_C,   KC_D,   KC_V,   KC_CCCV,   XXXXXXX, KC_DEL, KC_LEAD,  KC_K,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH,    KC_QUOT,
-                            XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, TT(RAISE), MT(MOD_LSFT,KC_SPACE), TT(NAV), TT(LOWER), KC_ALGR, KC_MPLY
+                            LCTL(LGUI(KC_Q)), KC_LCTL, KC_LALT, KC_LGUI, TT(RAISE), MT(MOD_LSFT,KC_SPACE), TT(NAV), TT(LOWER), KC_ALGR, KC_MPLY
     ),
 /*
 *              KC_LGUI, KC_LALT, MO(LOWER),  MT(MOD_LALT, KC_ENT), MT(MOD_LSFT, KC_SPC), LT(NAV, KC_SPC), MO(RAISE), KC_TAB, KC_RALT
@@ -72,16 +72,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
     ),
 /*
- * Raise Layer: Symbols/Numbers 
+ * Raise Layer: Symbols/Numbers
  *
  * ,-------------------------------------------.                              ,------------------------------------------.
  * |    ~   |  %   |  ^   |  &   |  *   |  {   |                              |   }  | 7 &  | 8 *  | 9 (  | . > |        |
- * |--------+------+------+------+------+------|                              |------+------+------+------------+--------| 
+ * |--------+------+------+------+------+------|                              |------+------+------+------------+--------|
  * |   \    |  @   |  $   |  -   |  =   |  (   |                              |   )  | 4 $  | 5 %  | 6 ^  |  0  |   |    |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------------+--------|
  * |        |  !   |  #   |  _   |  +   |  [   |      |      |  |      |      |   ]  | 1 !  | 2 @  | 3 #  | / ? |   `    |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+---------------------'
- *                        |      |      |      |      |      |  |      | Adj  |      |      |      |
+ *                        |      |      |      |      |      |  |      |      |  Adj |      |      |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
@@ -89,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TILD,   KC_PERC, KC_CIRC, KC_AMPR,   KC_ASTR,  KC_LCBR,                                       KC_RCBR, KC_7, KC_8, KC_9, KC_DOT,_______,
       KC_BSLASH, KC_AT, KC_DLR,  KC_MINUS,  KC_EQUAL, KC_LPRN,                                         KC_RPRN, KC_4, KC_5, KC_6, KC_0, KC_PIPE,
       _______,   KC_EXLM, KC_NONUS_HASH, KC_UNDS,  KC_PLUS,KC_LBRACKET, _______, _______, _______, _______,KC_RBRACKET,KC_1,KC_2,KC_3,KC_SLASH,KC_GRAVE,
-                                 _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+                                 _______, _______, _______, _______, _______, _______, TT(ADJUST), _______, _______, _______
     ),
 /*
  * Navigation Layer
@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |        |      |MLeft | MDown|MRight|      |                              | PgDn | Left | Down | Right|ScrlLk| CapsLk |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
- * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'                     
+ * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
  *                        | MBTN1|      |      |      | Adj  |  |      |      |      |      |MBTN2 |
  *                        |      |      |      |      |      |  |      |      |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, _______, KC_BTN1, KC_MS_U, KC_BTN2, _______,                                     KC_PGUP, KC_HOME, KC_UP,   KC_END,  KC_NONUS_BSLASH, _______,
       _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______,                                     KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, KC_SLCK, KC_CAPS,
       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-                                 KC_BTN1, _______, _______, _______, _______, _______, _______, _______, _______, KC_BTN2
+                                 KC_BTN1, _______, _______, _______, TT(ADJUST), _______, _______, _______, _______, KC_BTN2
     ),
 /*
  * Adjust Layer
@@ -163,24 +163,24 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case RAISE:
         // rgblight_setrgb (0x00,  0x00, 0xFF);
-        rgblight_sethsv_noeeprom_red(); 
-        rgblight_mode_noeeprom(1); 
+        rgblight_sethsv_noeeprom_red();
+        rgblight_mode_noeeprom(1);
         break;
     case LOWER:
-        rgblight_sethsv_noeeprom_green(); 
-        rgblight_mode_noeeprom(1); 
+        rgblight_sethsv_noeeprom_green();
+        rgblight_mode_noeeprom(1);
         break;
     case NAV:
-        rgblight_sethsv_noeeprom_white(); 
-        rgblight_mode_noeeprom(1); 
+        rgblight_sethsv_noeeprom_white();
+        rgblight_mode_noeeprom(1);
         break;
     case ADJUST:
-        rgblight_sethsv_noeeprom_yellow(); 
-        rgblight_mode_noeeprom(1); 
+        rgblight_sethsv_noeeprom_yellow();
+        rgblight_mode_noeeprom(1);
         break;
     default: //  for any other layers, or the default layer
-        rgblight_sethsv_noeeprom_blue(); 
-        rgblight_mode_noeeprom(1); 
+        rgblight_sethsv_noeeprom_blue();
+        rgblight_mode_noeeprom(1);
         break;
     }
 
@@ -222,9 +222,6 @@ void matrix_scan_user(void) {
         leading = false;
         leader_end();
 
-        SEQ_ONE_KEY(KC_C) { // Inline Code
-            SEND_STRING("`` " SS_TAP(X_LEFT) SS_TAP(X_LEFT));
-        }
         SEQ_ONE_KEY(KC_P) { // Invoke Password Manager
             SEND_STRING(SS_LCTRL(SS_LALT("\\")));
         }
@@ -240,11 +237,13 @@ void matrix_scan_user(void) {
         SEQ_TWO_KEYS(KC_E, KC_S) { // sign off
             SEND_STRING("\tCheers\nStuart");
         }
-        SEQ_ONE_KEY(KC_C) { // Alfred keyboard Manages
-            SEND_STRING(SS_LGUI(SS_LSFT("C")));
+        SEQ_ONE_KEY(KC_C) { // Alfred clipboard Manager
+            SEND_STRING(SS_LGUI(SS_RSFT("C")));
+        }
+        SEQ_ONE_KEY(KC_V) { //Mac paste without formatting
+            SEND_STRING(SS_LSFT(SS_LALT(SS_LGUI("V"))));
         }
     }
-
 }
 
 #ifdef OLED_DRIVER_ENABLE
@@ -319,7 +318,7 @@ void oled_task_user(void) {
 #endif
 
 #ifdef ENCODER_ENABLE
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         switch (biton32(layer_state)) {
             case COLEMAKDHM:
@@ -331,20 +330,27 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 }
                 break;
             case NAV:
-            // Mouse cursor up and down     
+            // Mouse cursor up and down
                 if (clockwise) {
                     tap_code(KC_MS_U);
                 } else {
                     tap_code(KC_MS_D);
                 }
                 break;
+            case LOWER:
+            // Page up and down
+                if (clockwise) {
+                    tap_code(KC_PGUP);
+                } else {
+                    tap_code(KC_PGDN);
+                }
             // default:
                 // Switch between windows on Windows with alt tab.
                 // if (clockwise) {
                 //     if (!is_alt_tab_active) {
                 //         is_alt_tab_active = true;
                 //         register_code(KC_LGUI);
-                //     } 
+                //     }
                 //     alt_tab_timer = timer_read();
                 //     tap_code16(KC_TAB);
                 // } else {
@@ -386,6 +392,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 break;
         }
     }
+    return true;
 }
 #endif
 
